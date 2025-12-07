@@ -45,6 +45,60 @@
 </ul>
 
 
- 
+<h2> Les étapes de projet</h2> 
+
+<ul>
+<li>Client churn = n'a pas acheté depuis ≥ <strong>90 jours</strong>.</li>
+<li>OU forte baisse de Frequency ou Monetary sur une fenêtre temporelle définie (ex: baisse > 50% sur les 3 derniers mois).</li>
+</ul>
+
+
+<h3>4.2 Feature Engineering</h3>
+<p>Variables à construire :</p>
+<ul>
+<li>R, F, M (ou scores RFM)</li>
+<li>Variation % de dépenses (ex: montant derniers 3 mois vs 3 mois précédents)</li>
+<li>Cluster (one-hot encoded)</li>
+<li>Country / Pays (encoding selon cardinalité)</li>
+<li>Moyenne panier = monetary / frequency</li>
+<li>Temps moyen entre achats, médiane inter-purchase interval</li>
+<li>Features temporelles : jours depuis 1er achat, âge du client</li>
+</ul>
+
+
+<h3>4.3 Séparation Train / Test</h3>
+<ul>
+<li>Split temporel recommandé : utiliser une date de coupure pour éviter la fuite temporelle (ex: training jusqu'à T0, test après T0).</li>
+<li>Sinon stratified split si label équilibré/déséquilibré.</li>
+</ul>
+
+
+<h3>4.4 Modélisation</h3>
+<p>Modèles candidats :</p>
+<ul>
+<li>Random Forest</li>
+<li>XGBoost</li>
+<li>Gradient Boosting </li>
+</ul>
+<p>Évaluation :</p>
+<ul>
+<li>Accuracy</li>
+<li>Recall (priorité si on veut capter churners)</li>
+<li>F1-score</li>
+<li>Matrice de confusion</li>
+<li>Courbes ROC / PR si pertinent</li>
+</ul>
+
+
+<h3>4.5 Interprétation</h3>
+<ul>
+<li>Importance des variables (feature importance, SHAP pour explications locales/globales).</li>
+<li>Analyse des faux positifs / faux négatifs et coûts associés (ex: coût d'une campagne de réactivation vs perte client).</li>
+<li>Recommandations marketing basées sur le score churn (p.ex. envoyer offres d'incitation aux "à risque" ou réengagement intensif pour "can't lose them").</li>
+</ul>
+</section>
+
+
+
 
 
